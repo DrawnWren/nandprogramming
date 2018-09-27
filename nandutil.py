@@ -25,7 +25,7 @@ def set_debug(debug_val):
 def TRUTH(prog):
     n,m = numinout(prog)
     if(n > 6):
-        raise ValueError('Please limit your program input to 6 bits') 
+        raise ValueError('Please limit your program input to 6 bits')
 
     print("In" + " "*(n + m ) + "Out")
     print("-" * (n + m + 5))
@@ -217,7 +217,21 @@ class NANDProgram(object):
         '''Adds the NAND lines to the end of the program that outputs two
         binary digits representing the value of var1 + var2 + var3'''
         intermediate_0 = self._allocate_add_workspace_var()
+        add3 = NANDprogram()
+        carry = add3.allocate()
+        add3.AND(carry , add3.input_var(0), add3.input_var(1))
+        add3.XOR(add3.output_var(0), add3.input_var(0), add3.input_var(1))
+        add3.XOR(add3.output_var(1), add3.input_var(2), carry)
+        return output;
 
+
+    def nandsquare(n):
+        '''Given n, returns a nand program that will comput X^2 mod 2n where |X| = n'''
+
+
+    # bitshift 2n <<
+    # if odd, add arg1
+    # return
         # TODO: implement this and other helper functions you feel necessary,
         # following a similar design as above.
         #
@@ -236,6 +250,7 @@ class NANDProgram(object):
         # As such, if you are pursuing the leaderboard, you might find yourself
         # needing to reimplement some of these functions in terms of
         # lower-level constructs.
+
 
         intermediate_2 = self._allocate_add_workspace_var()
 
@@ -264,7 +279,7 @@ class NANDProgram(object):
         n,m = numinout('\n'.join([('{} = NAND({},{})').format(program_tuple[0], program_tuple[1], program_tuple[2]) if not isinstance(program_tuple, basestring) else program_tuple
                           for program_tuple in self._program]))
         if n > self._num_inputs:
-            raise TypeError("There are {} inputs in your NAND code but you only declared {} inputs", n, self._num_inputs) 
+            raise TypeError("There are {} inputs in your NAND code but you only declared {} inputs", n, self._num_inputs)
         if m > self._num_outputs:
             raise TypeError("There are {} outputs in your NAND code but you only declared {} outputs", m, self._num_outputs)
         if n < self._num_inputs:
@@ -276,4 +291,3 @@ class NANDProgram(object):
 
     def __len__(self):
         return len([False for line in self._program if not isinstance(line, basestring) ])
-
