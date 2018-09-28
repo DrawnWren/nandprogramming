@@ -15,7 +15,6 @@ def nandsquare(n):
     digit (ex: 110001 --> 35)'''
     # creates a blank NAND program with n inputs and n outputs.
     prog = NANDProgram(n, n)
-
     # now add lines to your NAND program by calling python functions like
     # prog.NAND() or prog.OR() or other helper functions. For an example, take
     # a look at the stuff after if __name__ == '__main__':
@@ -23,6 +22,8 @@ def nandsquare(n):
     # "compiles" your completed program as a NAND program string.
     return str(prog)
 
+def rightshift(n):
+    '''Returns a program that takes [x_0,...x_n] as inputs and returns [0,...,x_n-1]  '''
 
 # TODO: Do this for bonus points and the leaderboard.
 def nandsquare256():
@@ -31,6 +32,11 @@ def nandsquare256():
     score on the leaderboard, you'll still recieve BONUS POINTS!!!'''
     raise NotImplementedError
 
+
+def badadder(N):
+    '''Should create a NAND adder that takes two n digits and outputs an n digit
+    because it's bad'''
+    return
 
 # Examples of using the NANDProgram class to build NAND Programs. Please don't
 # worry too much about the details of using this class - this is not a class
@@ -65,7 +71,7 @@ if __name__ == '__main__':
     # Input Number 2: 10110 --> 13   1111010110
     # Expected Output: 28 --> 001110
 
-   
+
     #816 0000110011
     #877 1011011011
     #  10111001011

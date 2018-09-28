@@ -218,6 +218,20 @@ class NANDProgram(object):
         self.OR(output, intermediate_1, var3)
         return output
 
+    def IF(self, output, var1, var2, var3):
+        '''Adds the NAND lines to the end of our program that
+            compute <output> := IF(<var1>, <var2>, <var3>)'''
+        intermediate_1 = self._allocate_or_workspace_var()
+        intermediate_2 = self._allocate_or_workspace_var()
+        intermediate_3 = self._allocate_or_workspace_var()
+        intermediate_4 = self._allocate_or_workspace_var()
+        self.NOT(intermediate_1,var1)
+        self.AND(intermediate_2,intermediate_1,var2)
+        self.AND(intermediate_3,var1, var3)
+        self.OR(output, intermediate_2, intermediate_3)
+
+        return output
+
     def ADD_3(self, output1, output2, var1, var2, var3, debug = False):
         '''Adds the NAND lines to the end of the program that outputs two
         binary digits representing the value of var1 + var2 + var3'''
